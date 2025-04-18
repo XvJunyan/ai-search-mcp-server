@@ -170,7 +170,7 @@ server.tool(
             }
             
             // 搜索引擎描述
-            const searchDescription = "A powerful web search tool that provides comprehensive, real-time results using Tavily's AI search engine. Returns relevant web content with customizable parameters for result count, content type, and domain filtering. Ideal for gathering current information, news, and detailed web content analysis.";
+            const searchDescription = "A powerful web search tool that provides comprehensive, real-time results using AI search engine. Returns relevant web content with customizable parameters for result count, content type, and domain filtering. Ideal for gathering current information, news, and detailed web content analysis.";
             
             // 将搜索描述添加到问题前面
             const enhancedQuestion = `${searchDescription}\n\n${question}`;
