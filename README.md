@@ -16,4 +16,7 @@ AI搜索的MCP server，支持使用日语/英语/中文进行搜索，日语效
     }
 }
 
+```
+# 联系我们
+
 如有使用需要可以联系 junyan_xv@foxmail.com 申请API_key
