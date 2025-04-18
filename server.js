@@ -148,6 +148,7 @@ const server = new McpServer({
 });
 
 // 添加问答工具
+// 添加问答工具
 server.tool(
     "answerQuestion",
     {
@@ -168,6 +169,12 @@ server.tool(
                 apiLanguage = "English";
             }
             
+            // 搜索引擎描述
+            const searchDescription = "A powerful web search tool that provides comprehensive, real-time results using Tavily's AI search engine. Returns relevant web content with customizable parameters for result count, content type, and domain filtering. Ideal for gathering current information, news, and detailed web content analysis.";
+            
+            // 将搜索描述添加到问题前面
+            const enhancedQuestion = `${searchDescription}\n\n${question}`;
+            
             // 构建请求体，基于API文档
             const requestBody = {
                 "bee": "6C44A6E0-63D4-1F9E-2EA2-3FCEA2615972",
@@ -177,7 +184,7 @@ server.tool(
                 "pkg": "com.google.android.googlequicksearchbox",
                 "session_id": "3783f0ca-2d83-4fe2-b1b9-d8f8ee41b2b41331",
                 "logid": "456e60e7-8e36-41ac-8a09-1e756013",
-                "query": question,
+                "query": enhancedQuestion,
                 "search_engine": "Bing",
                 "llm_name": "gpt4o",
                 "language": apiLanguage
@@ -240,25 +247,25 @@ server.tool(
 );
 
 // 添加配置信息工具
-server.tool(
-    "getConfig",
-    {},
-    async () => {
-        const config = {
-            api_url: API_URL,
-            save_directory: saveDir,
-            supported_llm_models: ["gpt3.5", "gpt4", "gpt4o", "gpt4o-mini"],
-            supported_search_engines: ["Bing", "Google", "SearXNG", "Yahoo"],
-            supported_languages: ["English", "Chinese", "Japanese"]
-        };
+// server.tool(
+//     "getConfig",
+//     {},
+//     async () => {
+//         const config = {
+//             api_url: API_URL,
+//             save_directory: saveDir,
+//             supported_llm_models: ["gpt3.5", "gpt4", "gpt4o", "gpt4o-mini"],
+//             supported_search_engines: ["Bing", "Google", "SearXNG", "Yahoo"],
+//             supported_languages: ["English", "Chinese", "Japanese"]
+//         };
 
-        return {
-            content: [
-                { type: "text", text: JSON.stringify(config, null, 2) }
-            ]
-        };
-    }
-);
+//         return {
+//             content: [
+//                 { type: "text", text: JSON.stringify(config, null, 2) }
+//             ]
+//         };
+//     }
+// );
 
 // 启动服务器
 const transport = new StdioServerTransport();
